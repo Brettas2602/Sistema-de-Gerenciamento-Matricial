@@ -17,5 +17,33 @@ public class Curso {
 
 	@Column(name = "descricao")
 	private String descricao;
+	
+	
+
+	public Curso(long id, String descricao) {
+		super();
+		this.id = id;
+		this.descricao = descricao;
+	}
+	
+	public Curso() {}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	
+	
 
 }

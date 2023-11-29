@@ -20,5 +20,42 @@ public class Semestre {
 
 	@Column(name = "numero")
 	private int numero;
+	
+	
+
+	public Semestre(long id, String descricao, int numero) {
+		super();
+		this.id = id;
+		this.descricao = descricao;
+		this.numero = numero;
+	}
+	
+	public Semestre() {}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+	
+	
 
 }

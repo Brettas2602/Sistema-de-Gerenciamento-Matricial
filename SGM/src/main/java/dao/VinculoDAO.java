@@ -2,22 +2,24 @@ package dao;
 
 import org.hibernate.Transaction;
 
-import bean.Curso;
+import bean.Vinculo;
 
-public class CursoDAO {
-	
-	public void insert(Curso curso) {
+public class VinculoDAO {
+
+	public void insert(Vinculo vinculo) {
 		Transaction transaction = DAOFactory.getSession().beginTransaction();
-		DAOFactory.getSession().persist(curso);
+		DAOFactory.getSession().persist(vinculo);
 		transaction.commit();
 		DAOFactory.closeSession();
 	}
 	
-	public void update(Curso curso) {
+	public void update(Vinculo vinculo) {
 		Transaction transaction = DAOFactory.getSession().beginTransaction();
 		transaction.begin();
-		Curso update = DAOFactory.getSession().get(Curso.class, curso.getId());
-		update.setDescricao(curso.getDescricao());
+		Vinculo update = DAOFactory.getSession().get(Vinculo.class, vinculo.getId());
+		update.setIdcurso(vinculo.getIdcurso());
+		update.setIddisciplina(vinculo.getIddisciplina());
+		update.setIdsemestre(vinculo.getIdsemestre());
 		DAOFactory.getSession().merge(update);
 		transaction.commit();
 		DAOFactory.closeSession();
@@ -26,9 +28,10 @@ public class CursoDAO {
 	public void delete(int id) {
 		Transaction transaction = DAOFactory.getSession().beginTransaction();
 		transaction.begin();
-		Curso delete = DAOFactory.getSession().get(Curso.class, id);
+		Vinculo delete = DAOFactory.getSession().get(Vinculo.class, id);
 		DAOFactory.getSession().remove(delete);
 		transaction.commit();
 		DAOFactory.closeSession();
 	}
+	
 }
