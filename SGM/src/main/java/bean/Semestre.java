@@ -23,11 +23,14 @@ public class Semestre {
 	
 	
 
-	public Semestre(long id, String descricao, int numero) {
+	public Semestre(String descricao, int numero) {
 		super();
-		this.id = id;
 		this.descricao = descricao;
 		this.numero = numero;
+	}
+	
+	public Semestre(int id) {
+		this.id = id;
 	}
 	
 	public Semestre() {}

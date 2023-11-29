@@ -20,10 +20,13 @@ public class Curso {
 	
 	
 
-	public Curso(long id, String descricao) {
+	public Curso(String descricao) {
 		super();
-		this.id = id;
 		this.descricao = descricao;
+	}
+	
+	public Curso(int id) {
+		this.id = id;
 	}
 	
 	public Curso() {}

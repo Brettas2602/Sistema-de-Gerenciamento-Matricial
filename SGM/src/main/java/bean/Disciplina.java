@@ -44,10 +44,9 @@ public class Disciplina {
 	
 	
 
-	public Disciplina(long id, String codigo, String nome, String nucleo, float chats_pratica, float chats_teorica,
+	public Disciplina(String codigo, String nome, String nucleo, float chats_pratica, float chats_teorica,
 			float chats_distancia, float chts_pratica, float chts_teorica, float chts_distancia) {
 		super();
-		this.id = id;
 		this.codigo = codigo;
 		this.nome = nome;
 		this.nucleo = nucleo;
@@ -57,6 +56,10 @@ public class Disciplina {
 		this.chts_pratica = chts_pratica;
 		this.chts_teorica = chts_teorica;
 		this.chts_distancia = chts_distancia;
+	}
+	
+	public Disciplina(int id) {
+		this.id = id;
 	}
 	
 	public Disciplina() {}

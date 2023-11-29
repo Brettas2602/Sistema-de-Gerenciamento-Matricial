@@ -5,7 +5,12 @@ import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 
+import javax.swing.JOptionPane;
+
 import bean.Curso;
+import bean.Disciplina;
+import bean.Semestre;
+import bean.Vinculo;
 import dao.CursoDAO;
 import dao.DisciplinaDAO;
 import dao.SemestreDAO;
@@ -21,10 +26,24 @@ public class Main {
 		VinculoDAO vinculodao = new VinculoDAO();
 		
 		try {
-			Curso c1 = new Curso(0, "Linguagem de Programação");
-			cursodao.insert(c1);
 			
-			cursodao.delete(1);
+			int idCurso = 4;
+			int idSemestre = 1;
+			int idDisciplina = 1;
+			
+//			Curso c1 = new Curso("Linguagem de Programação");
+//			cursodao.insert(c1);
+//			
+//			Semestre s1 = new Semestre("teste", 1);
+//			semestredao.insert(s1);
+//			
+//			Disciplina d1 = new Disciplina("teste", "teste", "teste", 0, 0, 0, 0, 0, 0);
+//			disciplinadao.insert(d1);
+			
+			Vinculo v1 = new Vinculo(new Curso(idCurso), new Semestre(idSemestre), new Disciplina(idDisciplina));
+			vinculodao.insert(v1);
+			JOptionPane.showMessageDialog(null, v1.toString());
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
