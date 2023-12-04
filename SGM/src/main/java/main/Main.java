@@ -180,7 +180,7 @@ public class Main {
 							idcurso = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do curso" + resultCursos));
 							iddisciplina = Integer.parseInt(JOptionPane.showInputDialog("Informe o id da disciplina" + resultDisciplinas));
 							idsemestre = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do semestre" + resultSemestres));
-							vinculodao.insert(new Vinculo(cursodao.findById(idcurso).get(0),
+							vinculodao.insert(new Vinculo(0, cursodao.findById(idcurso).get(0),
 									semestredao.findById(idsemestre).get(0), disciplinadao.findById(iddisciplina).get(0)));
 							break;
 					
@@ -189,13 +189,13 @@ public class Main {
 							idcurso = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do curso" + resultCursos));
 							iddisciplina = Integer.parseInt(JOptionPane.showInputDialog("Informe o id da disciplina" + resultDisciplinas));
 							idsemestre = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do semestre" + resultSemestres));
-							vinculodao.update(new Vinculo(cursodao.findById(idcurso).get(0),
+							vinculodao.update(new Vinculo(id, cursodao.findById(idcurso).get(0),
 									semestredao.findById(idsemestre).get(0), disciplinadao.findById(iddisciplina).get(0)));
 							break;
 					
 						case 3:
-							id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do curso"));
-							cursodao.delete(id);
+							id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do vinculo"));
+							vinculodao.delete(id);
 							break;
 						}
 						break;

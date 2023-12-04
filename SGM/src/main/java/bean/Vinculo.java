@@ -31,8 +31,9 @@ public class Vinculo {
 	
 	
 	
-	public Vinculo(Curso idcurso, Semestre idsemestre, Disciplina iddisciplina) {
+	public Vinculo(long id, Curso idcurso, Semestre idsemestre, Disciplina iddisciplina) {
 		super();
+		this.id = id;
 		this.idcurso = idcurso;
 		this.idsemestre = idsemestre;
 		this.iddisciplina = iddisciplina;
