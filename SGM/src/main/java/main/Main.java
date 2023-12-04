@@ -42,6 +42,18 @@ public class Main {
 				
 				int id = 0, cadastro = 0;
 				String descricao;
+				String resultCursos = "", resultDisciplinas = "", resultSemestres = "";
+				for (Curso curso : cursodao.findAll()) {
+					resultCursos += ("\n" + curso);
+				}
+				
+				for (Disciplina disciplina : disciplinadao.findAll()) {
+					resultDisciplinas += ("\n" + disciplina);
+				}
+				
+				for (Semestre semestre : semestredao.findAll()) {
+					resultSemestres += ("\n" + semestre);
+				}
 
 
 				switch (operacao) {	
@@ -61,13 +73,13 @@ public class Main {
 								break;
 						
 							case 2:
-								id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do curso"));
+								id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do curso" + resultCursos));
 								descricao = JOptionPane.showInputDialog("Informe a descricao do curso");
 								cursodao.update(new Curso(id, descricao));
 								break;
 						
 							case 3:
-								id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do curso"));
+								id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do curso" + resultCursos));
 								cursodao.delete(id);
 								break;
 						}
@@ -101,7 +113,7 @@ public class Main {
 								break;
 						
 							case 2:
-								id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id da disciplina"));
+								id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id da disciplina" + resultDisciplinas));
 								nome = JOptionPane.showInputDialog("Informe o nome da disciplina");
 								codigo = JOptionPane.showInputDialog("Informe o codigo da disciplina");
 								nucleo = JOptionPane.showInputDialog("Informe o nucleo da disciplina");
@@ -116,7 +128,7 @@ public class Main {
 								break;
 						
 							case 3:
-								id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id da disciplina"));
+								id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id da disciplina" + resultDisciplinas));
 								disciplinadao.delete(id);
 								break;
 						}
@@ -140,14 +152,14 @@ public class Main {
 								break;
 						
 							case 2:
-								id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do semestre"));
+								id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do semestre" + resultSemestres));
 								descricao = JOptionPane.showInputDialog("Informe a descricao do semestre");
 								numero = Integer.parseInt(JOptionPane.showInputDialog("Informe o numero do semestre"));
 								semestredao.update(new Semestre(id, descricao, numero));
 								break;
 						
 							case 3:
-								id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do semestre"));
+								id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do semestre" + resultSemestres));
 								semestredao.delete(id);
 								break;
 						}
@@ -162,19 +174,6 @@ public class Main {
 								+ "\n4- Voltar"));
 						
 						int idcurso, iddisciplina, idsemestre;
-						String resultCursos = "", resultDisciplinas = "", resultSemestres = "";
-						
-						for (Curso curso : cursodao.findAll()) {
-							resultCursos += ("\n" + curso);
-						}
-						
-						for (Disciplina disciplina : disciplinadao.findAll()) {
-							resultDisciplinas += ("\n" + disciplina);
-						}
-						
-						for (Semestre semestre : semestredao.findAll()) {
-							resultSemestres += ("\n" + semestre);
-						}
 						
 						switch (cadastro) {
 						case 1:
@@ -203,31 +202,16 @@ public class Main {
 		
 					//Consultar Cursos
 					case 5:		
-						resultCursos = "";
-						for (Curso curso : cursodao.findAll()) {
-							resultCursos += ("\n" + curso);
-						}
-						
 						JOptionPane.showMessageDialog(null, "Cursos:" + resultCursos);
 						break;
 		
 					//Consultar Disciplinas
 					case 6:
-						resultDisciplinas = "";
-						for (Disciplina disciplina : disciplinadao.findAll()) {
-							resultDisciplinas += ("\n" + disciplina);
-						}
-						
 						JOptionPane.showMessageDialog(null, "Disciplinas:" + resultDisciplinas);
 						break;
 		
 					//Consultar Disciplinas por Semestre
 					case 7:
-						resultSemestres = "";
-						for (Semestre semestre : semestredao.findAll()) {
-							resultSemestres += ("\n" + semestre);
-						}
-						
 						id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do semestre" + resultSemestres));
 						resultDisciplinas = "";
 						for (Disciplina disciplina : disciplinadao.findBySemestre(id)) {
@@ -238,11 +222,6 @@ public class Main {
 		
 					//Consultar Carga Horaria por Semestre
 					case 8:
-						resultSemestres = "";
-						for (Semestre semestre : semestredao.findAll()) {
-							resultSemestres += ("\n" + semestre);
-						}
-						
 						id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do semestre" + resultSemestres));
 						int tipoCH = Integer.parseInt(JOptionPane.showInputDialog("Informe o tipo de carga horaria:"
 								+ "\n1-CHATS"
@@ -265,38 +244,6 @@ public class Main {
 						return;
 				}
 			}
-
-//			int idCurso = 1;
-//			int idSemestre = 2;
-//			int idDisciplina = 4;
-//			
-//			Curso c1 = new Curso(0, "Linguagem 1");
-//			cursodao.insert(c1);
-//			
-//			Semestre s1 = new Semestre(0, "2° Semestre", 2);
-//			semestredao.insert(s1);
-
-//			Disciplina d1 = new Disciplina(0 ,"d4", "d4", "d4", 7, 7, 7, 8, 8, 8);
-//			disciplinadao.insert(d1);
-//			
-//			Vinculo v1 = new Vinculo(new Curso(idCurso), new Semestre(idSemestre), new Disciplina(idDisciplina));
-//			vinculodao.insert(v1);
-
-//			List<Disciplina> listaDisciplina = disciplinadao.findAll();
-//			for (Disciplina list : listaDisciplina) {
-//				System.out.println(list);
-//			}
-//			
-//			List<Curso> listaContatos = cursodao.findAll();
-//			for (Curso list : listaContatos) {
-//				System.out.println(list);
-//			}
-
-//			List<Disciplina> findBySemestre = disciplinadao.findBySemestre(1);
-//			System.out.println(findBySemestre);
-//			
-//			System.out.println(disciplinadao.findTotal(2, 2));
-			
 			
 
 		} catch (Exception e) {
