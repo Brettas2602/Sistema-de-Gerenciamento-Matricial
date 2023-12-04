@@ -1,8 +1,12 @@
 package dao;
 
+import java.util.List;
+
 import org.hibernate.Transaction;
 
 import bean.Disciplina;
+import bean.Semestre;
+import bean.Vinculo;
 
 public class DisciplinaDAO {
 	
@@ -14,7 +18,7 @@ public class DisciplinaDAO {
 	}
 	
 	public void update(Disciplina disciplina) {
-		Transaction transaction = DAOFactory.getSession().beginTransaction();
+		Transaction transaction = DAOFactory.getSession().getTransaction();
 		transaction.begin();
 		Disciplina update = DAOFactory.getSession().get(Disciplina.class, disciplina.getId());
 		update.setCodigo(disciplina.getCodigo());
@@ -32,11 +36,77 @@ public class DisciplinaDAO {
 	}
 	
 	public void delete(int id) {
-		Transaction transaction = DAOFactory.getSession().beginTransaction();
+		Transaction transaction = DAOFactory.getSession().getTransaction();
 		transaction.begin();
 		Disciplina delete = DAOFactory.getSession().get(Disciplina.class, id);
 		DAOFactory.getSession().remove(delete);
 		transaction.commit();
 		DAOFactory.closeSession();
+	}
+	
+	public List<Disciplina> findAll(){
+		Transaction transaction = DAOFactory.getSession().beginTransaction();
+		List<Disciplina> disciplinas = DAOFactory.getSession().createQuery("FROM Disciplina", Disciplina.class).getResultList();
+		transaction.commit();
+		DAOFactory.closeSession();
+		return disciplinas;
+	}
+	
+	public List<Disciplina> findBySemestre(int id){
+		Transaction transaction = DAOFactory.getSession().beginTransaction();
+		List<Disciplina> result = DAOFactory.getSession().createQuery("SELECT iddisciplina FROM Vinculo WHERE idsemestre.id = " + id, Disciplina.class).getResultList();
+		transaction.commit();
+		DAOFactory.closeSession();
+		return result;
+	}
+	
+	public float findTotal(int tipoCargaHoraria, int tipoPresencial) {
+		List<Disciplina> disciplinas = this.findAll();
+		float total = 0;
+		for (Disciplina disciplina : disciplinas) {
+			switch (tipoCargaHoraria) {
+				case 1:
+					switch (tipoPresencial) {
+						case 1:
+							total += disciplina.getChats_teorica();
+							break;
+						
+						case 2:
+							total += disciplina.getChats_teorica();
+							break;
+					}
+					break;
+	
+				case 2:
+					switch (tipoPresencial) {
+						case 1:
+							total += disciplina.getChts_teorica();
+							break;
+						
+						case 2:
+							total += disciplina.getChts_teorica();
+							break;
+					}
+					break;
+			}
+		}
+		return total;
+	}
+	
+	public float findTotalBySemestre(int id, int tipoCargaHoraria) {
+		List<Disciplina> disciplinas = this.findBySemestre(id);
+		float total = 0;
+		for (Disciplina disciplina : disciplinas) {
+			switch (tipoCargaHoraria) {
+				case 1:
+					total += disciplina.getChats_total();
+					break;
+	
+				case 2:
+					total += disciplina.getChts_total();
+					break;
+			}
+		}
+		return total;
 	}
 }

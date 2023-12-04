@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "vinculo")
+@Table(name = "Vinculo")
 public class Vinculo {
 	
 	@Id
@@ -30,14 +30,14 @@ public class Vinculo {
 	private Disciplina iddisciplina;
 	
 	
-
+	
 	public Vinculo(Curso idcurso, Semestre idsemestre, Disciplina iddisciplina) {
 		super();
 		this.idcurso = idcurso;
 		this.idsemestre = idsemestre;
 		this.iddisciplina = iddisciplina;
 	}
-	
+
 	public Vinculo() {}
 	
 	public String toString() {

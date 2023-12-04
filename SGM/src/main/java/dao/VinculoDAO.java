@@ -14,7 +14,7 @@ public class VinculoDAO {
 	}
 	
 	public void update(Vinculo vinculo) {
-		Transaction transaction = DAOFactory.getSession().beginTransaction();
+		Transaction transaction = DAOFactory.getSession().getTransaction();
 		transaction.begin();
 		Vinculo update = DAOFactory.getSession().get(Vinculo.class, vinculo.getId());
 		update.setIdcurso(vinculo.getIdcurso());
@@ -26,7 +26,7 @@ public class VinculoDAO {
 	}
 	
 	public void delete(int id) {
-		Transaction transaction = DAOFactory.getSession().beginTransaction();
+		Transaction transaction = DAOFactory.getSession().getTransaction();
 		transaction.begin();
 		Vinculo delete = DAOFactory.getSession().get(Vinculo.class, id);
 		DAOFactory.getSession().remove(delete);

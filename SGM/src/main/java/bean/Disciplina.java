@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "disciplina")
+@Table(name = "Disciplina")
 public class Disciplina {
 
 	@Id
@@ -32,6 +32,9 @@ public class Disciplina {
 
 	@Column(name = "chats_distancia")
 	private float chats_distancia;
+	
+	@Column(name = "chats_total")
+	private float chats_total;
 
 	@Column(name = "chts_pratica")
 	private float chts_pratica;
@@ -40,13 +43,17 @@ public class Disciplina {
 	private float chts_teorica;
 
 	@Column(name = "chts_distancia")
-	private float chts_distancia;
+	private float chts_distancia;	
 	
+	@Column(name = "chts_total")
+	private float chts_total;
 	
 
-	public Disciplina(String codigo, String nome, String nucleo, float chats_pratica, float chats_teorica,
+
+	public Disciplina(long id, String codigo, String nome, String nucleo, float chats_pratica, float chats_teorica,
 			float chats_distancia, float chts_pratica, float chts_teorica, float chts_distancia) {
 		super();
+		this.id = id;
 		this.codigo = codigo;
 		this.nome = nome;
 		this.nucleo = nucleo;
@@ -56,13 +63,23 @@ public class Disciplina {
 		this.chts_pratica = chts_pratica;
 		this.chts_teorica = chts_teorica;
 		this.chts_distancia = chts_distancia;
+		this.chats_total = chats_distancia + chats_pratica + chats_teorica;
+		this.chts_total = chts_distancia + chts_pratica + chts_teorica;
 	}
-	
+
 	public Disciplina(int id) {
 		this.id = id;
 	}
 	
 	public Disciplina() {}
+	
+	
+	public String toString() {
+		return "Disciplina [id=" + id + ", codigo=" + codigo + ", nome=" + nome + ", nucleo=" + nucleo
+				+ ", chats_pratica=" + chats_pratica + ", chats_teorica=" + chats_teorica + ", chats_distancia="
+				+ chats_distancia + ", chts_pratica=" + chts_pratica + ", chts_teorica=" + chts_teorica
+				+ ", chts_distancia=" + chts_distancia + "]";
+	}
 
 	public long getId() {
 		return id;
@@ -142,6 +159,22 @@ public class Disciplina {
 
 	public void setChts_distancia(float chts_distancia) {
 		this.chts_distancia = chts_distancia;
+	}
+	
+	public float getChats_total() {
+		return chats_total;
+	}
+
+	public void setChats_total(float chats_total) {
+		this.chats_total = chats_total;
+	}
+
+	public float getChts_total() {
+		return chts_total;
+	}
+
+	public void setChts_total(float chts_total) {
+		this.chts_total = chts_total;
 	}
 	
 	

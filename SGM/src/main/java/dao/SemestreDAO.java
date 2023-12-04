@@ -14,7 +14,7 @@ public class SemestreDAO {
 	}
 	
 	public void update(Semestre semestre) {
-		Transaction transaction = DAOFactory.getSession().beginTransaction();
+		Transaction transaction = DAOFactory.getSession().getTransaction();
 		transaction.begin();
 		Semestre update = DAOFactory.getSession().get(Semestre.class, semestre.getId());
 		update.setNumero(semestre.getNumero());
@@ -25,7 +25,7 @@ public class SemestreDAO {
 	}
 	
 	public void delete(int id) {
-		Transaction transaction = DAOFactory.getSession().beginTransaction();
+		Transaction transaction = DAOFactory.getSession().getTransaction();
 		transaction.begin();
 		Semestre delete = DAOFactory.getSession().get(Semestre.class, id);
 		DAOFactory.getSession().remove(delete);

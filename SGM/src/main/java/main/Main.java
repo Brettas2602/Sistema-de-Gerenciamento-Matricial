@@ -4,8 +4,7 @@ import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
-
-import javax.swing.JOptionPane;
+import java.util.List;
 
 import bean.Curso;
 import bean.Disciplina;
@@ -27,22 +26,36 @@ public class Main {
 		
 		try {
 			
-			int idCurso = 4;
-			int idSemestre = 1;
-			int idDisciplina = 1;
-			
-//			Curso c1 = new Curso("Linguagem de Programação");
+			int idCurso = 1;
+			int idSemestre = 2;
+			int idDisciplina = 4;
+//			
+//			Curso c1 = new Curso(0, "Linguagem 1");
 //			cursodao.insert(c1);
 //			
-//			Semestre s1 = new Semestre("teste", 1);
+//			Semestre s1 = new Semestre(0, "2Â° Semestre", 2);
 //			semestredao.insert(s1);
-//			
-//			Disciplina d1 = new Disciplina("teste", "teste", "teste", 0, 0, 0, 0, 0, 0);
-//			disciplinadao.insert(d1);
 			
-			Vinculo v1 = new Vinculo(new Curso(idCurso), new Semestre(idSemestre), new Disciplina(idDisciplina));
-			vinculodao.insert(v1);
-			JOptionPane.showMessageDialog(null, v1.toString());
+//			Disciplina d1 = new Disciplina(0 ,"d4", "d4", "d4", 7, 7, 7, 8, 8, 8);
+//			disciplinadao.insert(d1);
+//			
+//			Vinculo v1 = new Vinculo(new Curso(idCurso), new Semestre(idSemestre), new Disciplina(idDisciplina));
+//			vinculodao.insert(v1);
+			
+//			List<Disciplina> listaDisciplina = disciplinadao.findAll();
+//			for (Disciplina list : listaDisciplina) {
+//				System.out.println(list);
+//			}
+//			
+//			List<Curso> listaContatos = cursodao.findAll();
+//			for (Curso list : listaContatos) {
+//				System.out.println(list);
+//			}
+			
+			List<Disciplina> findBySemestre = disciplinadao.findBySemestre(1);
+			System.out.println(findBySemestre);
+//			
+			System.out.println(disciplinadao.findTotal(2, 2));
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "curso")
+@Table(name = "Curso")
 public class Curso {
 
 	@Id
@@ -20,8 +20,9 @@ public class Curso {
 	
 	
 
-	public Curso(String descricao) {
+	public Curso(long id, String descricao) {
 		super();
+		this.id = id;
 		this.descricao = descricao;
 	}
 	
@@ -30,6 +31,10 @@ public class Curso {
 	}
 	
 	public Curso() {}
+	
+	public String toString() {
+		return ("ID: " + id + " DESCRICAO: " + descricao);
+	}
 
 	public long getId() {
 		return id;
