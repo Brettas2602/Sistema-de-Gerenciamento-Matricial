@@ -34,6 +34,14 @@ public class CursoDAO {
 		DAOFactory.closeSession();
 	}
 	
+	public List<Curso> findById(int id){
+		Transaction transaction = DAOFactory.getSession().beginTransaction();
+		List<Curso> cursos = DAOFactory.getSession().createQuery("FROM Curso WHERE id = " + id, Curso.class).getResultList();
+		transaction.commit();
+		DAOFactory.closeSession();
+		return cursos;
+	}
+	
 	public List<Curso> findAll(){
 		Transaction transaction = DAOFactory.getSession().beginTransaction();
 		List<Curso> cursos = DAOFactory.getSession().createQuery("FROM Curso", Curso.class).getResultList();

@@ -6,6 +6,8 @@ import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import bean.Curso;
 import bean.Disciplina;
 import bean.Semestre;
@@ -16,32 +18,209 @@ import dao.SemestreDAO;
 import dao.VinculoDAO;
 
 public class Main {
-	
+
 	public Main() {
 		changeEncoding();
 		CursoDAO cursodao = new CursoDAO();
 		DisciplinaDAO disciplinadao = new DisciplinaDAO();
 		SemestreDAO semestredao = new SemestreDAO();
 		VinculoDAO vinculodao = new VinculoDAO();
-		
+
 		try {
-			
-			int idCurso = 1;
-			int idSemestre = 2;
-			int idDisciplina = 4;
+			while(true) {
+				int operacao = Integer.parseInt(JOptionPane.showInputDialog("Informe a operacao que voce deseja fazer:"
+						+ "\n1- Cadastrar Curso"
+						+ "\n2- Cadastrar Disciplina"
+						+ "\n3- Cadastrar Semestre"
+						+ "\n4- Vincular Disciplina/Semestre"
+						+ "\n5- Consultar Cursos"
+						+ "\n6- Consultar Disciplinas"
+						+ "\n7- Consultar Disciplinas por Semestre"
+						+ "\n8- Consultar Total de Carga Horaria por Semestre"
+						+ "\n9- Consultar Total de Carga Horaria Teorica ou Pratica"
+						+ "\n0- Sair"));
+				
+				int id = 0, cadastro = 0;
+				String descricao;
+
+
+				switch (operacao) {				
+					case 1:						
+						cadastro = Integer.parseInt(JOptionPane.showInputDialog("Informe o que voce deseja fazer:"
+								+ "\n1- Inserir"
+								+ "\n2- Atualizar"
+								+ "\n3- Excluir"
+								+ "\n4- Voltar"));
+		
+						switch (cadastro) {
+							case 1:
+								descricao = JOptionPane.showInputDialog("Informe a descricao do curso");
+								cursodao.insert(new Curso(0, descricao));
+								break;
+						
+							case 2:
+								id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do curso"));
+								descricao = JOptionPane.showInputDialog("Informe a descricao do curso");
+								cursodao.update(new Curso(id, descricao));
+								break;
+						
+							case 3:
+								id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do curso"));
+								cursodao.delete(id);
+								break;
+						}
+				
+					case 2:
+						cadastro = Integer.parseInt(JOptionPane.showInputDialog("Informe o que voce deseja fazer:"
+								+ "\n1- Inserir"
+								+ "\n2- Atualizar"
+								+ "\n3- Excluir"
+								+ "\n4- Voltar"));
+						
+						String codigo, nome, nucleo;
+						float chats_pratica, chats_teorica, chats_distancia, chts_pratica, 
+								chts_teorica, chts_distancia;
+						
+		
+						switch (cadastro) {
+							case 1:
+								nome = JOptionPane.showInputDialog("Informe o nome da disciplina");
+								codigo = JOptionPane.showInputDialog("Informe o codigo da disciplina");
+								nucleo = JOptionPane.showInputDialog("Informe o nucleo da disciplina");
+								chats_pratica = Integer.parseInt(JOptionPane.showInputDialog("Informe o CHATS Pratica"));
+								chats_teorica = Integer.parseInt(JOptionPane.showInputDialog("Informe o CHATS Teorica"));
+								chats_distancia = Integer.parseInt(JOptionPane.showInputDialog("Informe o CHATS Distancia"));
+								chts_pratica = Integer.parseInt(JOptionPane.showInputDialog("Informe o CHTS Pratica"));
+								chts_teorica = Integer.parseInt(JOptionPane.showInputDialog("Informe o CHTS Teorica"));
+								chts_distancia = Integer.parseInt(JOptionPane.showInputDialog("Informe o CHTS Distancia"));
+								disciplinadao.insert(new Disciplina(id, codigo, nome, nucleo, chats_pratica, chats_teorica, 
+										chats_distancia, chts_pratica, chts_teorica, chts_distancia));
+								break;
+						
+							case 2:
+								id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id da disciplina"));
+								nome = JOptionPane.showInputDialog("Informe o nome da disciplina");
+								codigo = JOptionPane.showInputDialog("Informe o codigo da disciplina");
+								nucleo = JOptionPane.showInputDialog("Informe o nucleo da disciplina");
+								chats_pratica = Integer.parseInt(JOptionPane.showInputDialog("Informe o CHATS Pratica"));
+								chats_teorica = Integer.parseInt(JOptionPane.showInputDialog("Informe o CHATS Teorica"));
+								chats_distancia = Integer.parseInt(JOptionPane.showInputDialog("Informe o CHATS Distancia"));
+								chts_pratica = Integer.parseInt(JOptionPane.showInputDialog("Informe o CHTS Pratica"));
+								chts_teorica = Integer.parseInt(JOptionPane.showInputDialog("Informe o CHTS Teorica"));
+								chts_distancia = Integer.parseInt(JOptionPane.showInputDialog("Informe o CHTS Distancia"));
+								disciplinadao.update(new Disciplina(id, codigo, nome, nucleo, chats_pratica, chats_teorica, 
+										chats_distancia, chts_pratica, chts_teorica, chts_distancia));
+								break;
+						
+							case 3:
+								id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id da disciplina"));
+								disciplinadao.delete(id);
+								break;
+						}
+						break;
+		
+					case 3:
+						cadastro = Integer.parseInt(JOptionPane.showInputDialog("Informe o que voce deseja fazer:"
+								+ "\n1- Inserir"
+								+ "\n2- Atualizar"
+								+ "\n3- Excluir"
+								+ "\n4- Voltar"));
+						
+						int numero = 0;
+		
+						switch (cadastro) {
+							case 1:
+								descricao = JOptionPane.showInputDialog("Informe a descricao do semestre");
+								numero = Integer.parseInt(JOptionPane.showInputDialog("Informe o numero do semestre"));
+								semestredao.insert(new Semestre(0, descricao, numero));
+								break;
+						
+							case 2:
+								id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do semestre"));
+								descricao = JOptionPane.showInputDialog("Informe a descricao do semestre");
+								numero = Integer.parseInt(JOptionPane.showInputDialog("Informe o numero do semestre"));
+								semestredao.update(new Semestre(id, descricao, numero));
+								break;
+						
+							case 3:
+								id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do semestre"));
+								semestredao.delete(id);
+								break;
+						}
+						break;
+		
+					case 4:
+						cadastro = Integer.parseInt(JOptionPane.showInputDialog("Informe o que voce deseja fazer:"
+								+ "\n1- Inserir"
+								+ "\n2- Atualizar"
+								+ "\n3- Excluir"
+								+ "\n4- Voltar"));
+						
+						int idcurso, iddisciplina, idsemestre;
+						
+						switch (cadastro) {
+						case 1:
+							idcurso = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do curso"));
+							iddisciplina = Integer.parseInt(JOptionPane.showInputDialog("Informe o id da disciplina"));
+							idsemestre = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do semestre"));
+							vinculodao.insert(new Vinculo(cursodao.findById(idcurso).get(0),
+									semestredao.findById(idsemestre).get(0), disciplinadao.findById(iddisciplina).get(0)));
+							break;
+					
+						case 2:
+							id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do curso"));
+							descricao = JOptionPane.showInputDialog("Informe a descricao do curso");
+							cursodao.update(new Curso(id, descricao));
+							break;
+					
+						case 3:
+							id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do curso"));
+							cursodao.delete(id);
+							break;
+						}
+						break;
+		
+					case 5:
+		
+						break;
+		
+					case 6:
+		
+						break;
+		
+					case 7:
+		
+						break;
+		
+					case 8:
+		
+						break;
+		
+					case 9:
+		
+						break;
+						
+					default:
+						return;
+				}
+			}
+
+//			int idCurso = 1;
+//			int idSemestre = 2;
+//			int idDisciplina = 4;
 //			
 //			Curso c1 = new Curso(0, "Linguagem 1");
 //			cursodao.insert(c1);
 //			
 //			Semestre s1 = new Semestre(0, "2° Semestre", 2);
 //			semestredao.insert(s1);
-			
+
 //			Disciplina d1 = new Disciplina(0 ,"d4", "d4", "d4", 7, 7, 7, 8, 8, 8);
 //			disciplinadao.insert(d1);
 //			
 //			Vinculo v1 = new Vinculo(new Curso(idCurso), new Semestre(idSemestre), new Disciplina(idDisciplina));
 //			vinculodao.insert(v1);
-			
+
 //			List<Disciplina> listaDisciplina = disciplinadao.findAll();
 //			for (Disciplina list : listaDisciplina) {
 //				System.out.println(list);
@@ -51,26 +230,28 @@ public class Main {
 //			for (Curso list : listaContatos) {
 //				System.out.println(list);
 //			}
-			
-			List<Disciplina> findBySemestre = disciplinadao.findBySemestre(1);
-			System.out.println(findBySemestre);
+
+//			List<Disciplina> findBySemestre = disciplinadao.findBySemestre(1);
+//			System.out.println(findBySemestre);
 //			
-			System.out.println(disciplinadao.findTotal(2, 2));
+//			System.out.println(disciplinadao.findTotal(2, 2));
 			
+			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		new Main();
 	}
-	
+
 	public void changeEncoding() {
 		try {
-		    System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out), true, "UTF-8"));
+			System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out), true, "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
-		    throw new InternalError("VM does not support mandatory encoding UTF-8");
+			throw new InternalError("VM does not support mandatory encoding UTF-8");
 		}
 	}
 

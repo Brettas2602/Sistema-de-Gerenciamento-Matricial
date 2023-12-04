@@ -5,8 +5,6 @@ import java.util.List;
 import org.hibernate.Transaction;
 
 import bean.Disciplina;
-import bean.Semestre;
-import bean.Vinculo;
 
 public class DisciplinaDAO {
 	
@@ -42,6 +40,14 @@ public class DisciplinaDAO {
 		DAOFactory.getSession().remove(delete);
 		transaction.commit();
 		DAOFactory.closeSession();
+	}
+	
+	public List<Disciplina> findById(int id){
+		Transaction transaction = DAOFactory.getSession().beginTransaction();
+		List<Disciplina> disciplinas = DAOFactory.getSession().createQuery("FROM Disciplina WHERE id = " + id, Disciplina.class).getResultList();
+		transaction.commit();
+		DAOFactory.closeSession();
+		return disciplinas;
 	}
 	
 	public List<Disciplina> findAll(){
