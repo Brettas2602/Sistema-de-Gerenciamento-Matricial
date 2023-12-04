@@ -157,20 +157,36 @@ public class Main {
 								+ "\n4- Voltar"));
 						
 						int idcurso, iddisciplina, idsemestre;
+						String resultCursos = "", resultDisciplinas = "", resultSemestres = "";
+						
+						for (Curso curso : cursodao.findAll()) {
+							resultCursos += ("\n" + curso);
+						}
+						
+						for (Disciplina disciplina : disciplinadao.findAll()) {
+							resultDisciplinas += ("\n" + disciplina);
+						}
+						
+						for (Semestre semestre : semestredao.findAll()) {
+							resultSemestres += ("\n" + semestre);
+						}
 						
 						switch (cadastro) {
 						case 1:
-							idcurso = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do curso"));
-							iddisciplina = Integer.parseInt(JOptionPane.showInputDialog("Informe o id da disciplina"));
-							idsemestre = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do semestre"));
+							idcurso = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do curso" + resultCursos));
+							iddisciplina = Integer.parseInt(JOptionPane.showInputDialog("Informe o id da disciplina" + resultDisciplinas));
+							idsemestre = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do semestre" + resultSemestres));
 							vinculodao.insert(new Vinculo(cursodao.findById(idcurso).get(0),
 									semestredao.findById(idsemestre).get(0), disciplinadao.findById(iddisciplina).get(0)));
 							break;
 					
 						case 2:
-							id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do curso"));
-							descricao = JOptionPane.showInputDialog("Informe a descricao do curso");
-							cursodao.update(new Curso(id, descricao));
+							id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do vinculo"));
+							idcurso = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do curso"));
+							iddisciplina = Integer.parseInt(JOptionPane.showInputDialog("Informe o id da disciplina"));
+							idsemestre = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do semestre"));
+							vinculodao.update(new Vinculo(cursodao.findById(idcurso).get(0),
+									semestredao.findById(idsemestre).get(0), disciplinadao.findById(iddisciplina).get(0)));
 							break;
 					
 						case 3:

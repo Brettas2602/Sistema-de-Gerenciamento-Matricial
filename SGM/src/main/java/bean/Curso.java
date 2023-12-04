@@ -33,7 +33,7 @@ public class Curso {
 	public Curso() {}
 	
 	public String toString() {
-		return ("ID: " + id + " DESCRICAO: " + descricao);
+		return ("ID: " + id + " | DESCRICAO: " + descricao);
 	}
 
 	public long getId() {

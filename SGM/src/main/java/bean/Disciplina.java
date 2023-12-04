@@ -75,10 +75,7 @@ public class Disciplina {
 	
 	
 	public String toString() {
-		return "Disciplina [id=" + id + ", codigo=" + codigo + ", nome=" + nome + ", nucleo=" + nucleo
-				+ ", chats_pratica=" + chats_pratica + ", chats_teorica=" + chats_teorica + ", chats_distancia="
-				+ chats_distancia + ", chts_pratica=" + chts_pratica + ", chts_teorica=" + chts_teorica
-				+ ", chts_distancia=" + chts_distancia + "]";
+		return "ID: " + id + " | CODIGO: " + codigo + " | NOME: " + nome;
 	}
 
 	public long getId() {

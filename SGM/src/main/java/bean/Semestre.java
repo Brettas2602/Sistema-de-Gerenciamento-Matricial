@@ -35,6 +35,11 @@ public class Semestre {
 	}
 	
 	public Semestre() {}
+	
+	
+	public String toString() {
+		return "ID: " + id + " | DESCRICAO: " + descricao + " | NUMERO: " + numero;
+	}
 
 	public long getId() {
 		return id;
