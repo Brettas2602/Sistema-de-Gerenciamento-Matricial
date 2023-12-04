@@ -44,7 +44,9 @@ public class Main {
 				String descricao;
 
 
-				switch (operacao) {				
+				switch (operacao) {	
+				
+					//Cadastrar Curso
 					case 1:						
 						cadastro = Integer.parseInt(JOptionPane.showInputDialog("Informe o que voce deseja fazer:"
 								+ "\n1- Inserir"
@@ -70,6 +72,7 @@ public class Main {
 								break;
 						}
 				
+					//Cadastrar Disciplina
 					case 2:
 						cadastro = Integer.parseInt(JOptionPane.showInputDialog("Informe o que voce deseja fazer:"
 								+ "\n1- Inserir"
@@ -119,6 +122,7 @@ public class Main {
 						}
 						break;
 		
+					// Cadastrar Semestre
 					case 3:
 						cadastro = Integer.parseInt(JOptionPane.showInputDialog("Informe o que voce deseja fazer:"
 								+ "\n1- Inserir"
@@ -149,6 +153,7 @@ public class Main {
 						}
 						break;
 		
+					//Vincular
 					case 4:
 						cadastro = Integer.parseInt(JOptionPane.showInputDialog("Informe o que voce deseja fazer:"
 								+ "\n1- Inserir"
@@ -182,9 +187,9 @@ public class Main {
 					
 						case 2:
 							id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do vinculo"));
-							idcurso = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do curso"));
-							iddisciplina = Integer.parseInt(JOptionPane.showInputDialog("Informe o id da disciplina"));
-							idsemestre = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do semestre"));
+							idcurso = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do curso" + resultCursos));
+							iddisciplina = Integer.parseInt(JOptionPane.showInputDialog("Informe o id da disciplina" + resultDisciplinas));
+							idsemestre = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do semestre" + resultSemestres));
 							vinculodao.update(new Vinculo(cursodao.findById(idcurso).get(0),
 									semestredao.findById(idsemestre).get(0), disciplinadao.findById(iddisciplina).get(0)));
 							break;
@@ -196,24 +201,64 @@ public class Main {
 						}
 						break;
 		
-					case 5:
-		
+					//Consultar Cursos
+					case 5:		
+						resultCursos = "";
+						for (Curso curso : cursodao.findAll()) {
+							resultCursos += ("\n" + curso);
+						}
+						
+						JOptionPane.showMessageDialog(null, "Cursos:" + resultCursos);
 						break;
 		
+					//Consultar Disciplinas
 					case 6:
-		
+						resultDisciplinas = "";
+						for (Disciplina disciplina : disciplinadao.findAll()) {
+							resultDisciplinas += ("\n" + disciplina);
+						}
+						
+						JOptionPane.showMessageDialog(null, "Disciplinas:" + resultDisciplinas);
 						break;
 		
+					//Consultar Disciplinas por Semestre
 					case 7:
-		
+						resultSemestres = "";
+						for (Semestre semestre : semestredao.findAll()) {
+							resultSemestres += ("\n" + semestre);
+						}
+						
+						id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do semestre" + resultSemestres));
+						resultDisciplinas = "";
+						for (Disciplina disciplina : disciplinadao.findBySemestre(id)) {
+							resultDisciplinas += ("\n" + disciplina);
+						}
+						JOptionPane.showMessageDialog(null, "Disciplinas pelo semestre: " + resultDisciplinas);
 						break;
 		
+					//Consultar Carga Horaria por Semestre
 					case 8:
-		
+						resultSemestres = "";
+						for (Semestre semestre : semestredao.findAll()) {
+							resultSemestres += ("\n" + semestre);
+						}
+						
+						id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do semestre" + resultSemestres));
+						int tipoCH = Integer.parseInt(JOptionPane.showInputDialog("Informe o tipo de carga horaria:"
+								+ "\n1-CHATS"
+								+ "\n2-CHTS"));
+						JOptionPane.showMessageDialog(null, "Total de Carga Horaria do semestre: " + disciplinadao.findTotalBySemestre(id, tipoCH));
 						break;
 		
+					//Consultar Carga Horaria Teorica ou Pratica
 					case 9:
-		
+						tipoCH = Integer.parseInt(JOptionPane.showInputDialog("Informe o tipo de carga horaria:"
+								+ "\n1-CHATS"
+								+ "\n2-CHTS"));
+						int tipoPresencial = Integer.parseInt(JOptionPane.showInputDialog("Informe o tipo de carga horaria presencial:"
+								+ "\n1-Teorica"
+								+ "\n2-Pratica"));
+						JOptionPane.showMessageDialog(null, "Total de Carga Horaria: " + disciplinadao.findTotal(tipoCH, tipoPresencial));
 						break;
 						
 					default:
